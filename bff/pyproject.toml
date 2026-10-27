@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ptap-workbench-bff"
+version = "0.1.0"
+description = "Backend-for-frontend for the operations workbench: Cognito auth, persona scope, service calls"
+requires-python = ">=3.12"
+dependencies = ["ptap-common>=0.1,<0.2", "uvicorn[standard]>=0.32,<0.33", "python-multipart>=0.0.20",
+                "PyJWT[crypto]>=2.10,<3"]
+
+[project.optional-dependencies]
+test = ["pytest>=8.3", "pytest-asyncio>=0.25,<0.26", "asgi-lifespan>=2.1"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ptap_bff"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
